@@ -9,7 +9,7 @@ class AnecdoteList extends React.Component {
     return (
       <div>
         <h2>Anecdotes</h2>
-        {this.props.anecdotes.filter(a=>a.content.indexOf(this.props.filter)!==-1).sort((a, b) => b.votes - a.votes).map(anecdote =>
+        {this.props.anecdotesToShow.map(anecdote =>
           <div key={anecdote.id}>
             <div>
               {anecdote.content}
@@ -32,8 +32,13 @@ class AnecdoteList extends React.Component {
   }
 }
 
-//export default AnecdoteList
 export default connect(
-  (a) => {return a;},
+  (state) => {
+    return {
+      anecdotesToShow: state.anecdotes
+                            .filter(a=>a.content.indexOf(state.filter)!==-1)
+                            .sort((a, b) => b.votes - a.votes)
+    };
+  },
   mapDispatchToProps
 )(AnecdoteList)
