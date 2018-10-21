@@ -4,9 +4,22 @@ import Notification from './components/Notification'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
 import anecdoteReducer from './reducers/anecdoteReducer';
-import { mapDispatchToProps } from './store';
+import store, { mapDispatchToProps } from './store';
 
 class App extends React.Component {
+
+  componentWillMount()
+  {
+    store.subscribe( (a) => {
+      this.forceUpdate();
+    } );
+  }
+  componentWillUnmount()
+  {
+    store.subscribe( (a) => {
+      console.log('remove');
+    } );
+  }
 
   render() {
     console.log("App props:",this.props);
@@ -22,6 +35,7 @@ class App extends React.Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
     redux: state
@@ -30,7 +44,7 @@ const mapStateToProps = state => {
 
 export default connect(
   (a) => a,
-  mapDispatchToProps()
+  mapDispatchToProps
 )(App)
 
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import anecdoteReducer from '../reducers/anecdoteReducer';
+import { mapDispatchToProps } from '../store';
 
 class AnecdoteList extends React.Component {
   render() {
@@ -15,8 +16,11 @@ class AnecdoteList extends React.Component {
             </div>
             <div>
               has {anecdote.votes}
-              <button onClick={() => 
-                this.props.voteAnecdote( anecdote.id )
+              <button onClick={() => {
+                  this.props.actions.anecdotes.voteAnecdote( anecdote.id );
+                  this.props.actions.notification.setNotification( 'Anecdote voted' );
+                  setTimeout( () => this.props.actions.notification.removeNotification(), 5000 );
+                }
               }>
                 vote
               </button>
@@ -31,5 +35,5 @@ class AnecdoteList extends React.Component {
 //export default AnecdoteList
 export default connect(
   (a) => {return a;},
-  anecdoteReducer.mapDispatchToProps()
+  mapDispatchToProps
 )(AnecdoteList)

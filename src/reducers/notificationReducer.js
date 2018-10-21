@@ -19,6 +19,12 @@ const mapDispatchToProps = dispatch => {
         type: 'SET_NOTIFICATION',
         text: text
       };
+    },
+    removeNotification: () => {
+      return {
+        type: 'SET_NOTIFICATION',
+        text: ''
+      };
     }
   }
 }
