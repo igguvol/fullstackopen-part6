@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 class Notification extends React.Component {
   render() {
@@ -9,10 +10,13 @@ class Notification extends React.Component {
     }
     return (
       <div style={style}>
-        render here notification...
+      {this.props.notification.text}        
       </div>
     )
   }
 }
 
-export default Notification
+export default connect(
+  (a) => {return a;},
+  null
+)(Notification)
