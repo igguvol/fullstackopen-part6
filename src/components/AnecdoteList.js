@@ -30,6 +30,6 @@ class AnecdoteList extends React.Component {
 
 //export default AnecdoteList
 export default connect(
-  (a) => {return {anecdotes:a};},
+  (a) => {return a;},
   anecdoteReducer.mapDispatchToProps()
 )(AnecdoteList)

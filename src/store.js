@@ -1,6 +1,13 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import anecdoteReducer from './reducers/anecdoteReducer'
+import notificationReducer from './reducers/notificationReducer'
 
-const store = createStore(anecdoteReducer.reducer)
+const reducer = combineReducers({
+  anecdotes: anecdoteReducer.reducer,
+  notification: notificationReducer.reducer
+})
+
+
+const store = createStore(reducer)
 
 export default store
