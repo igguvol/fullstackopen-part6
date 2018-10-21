@@ -4,6 +4,7 @@ import Notification from './components/Notification'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
 import anecdoteReducer from './reducers/anecdoteReducer';
+import { mapDispatchToProps } from './store';
 
 class App extends React.Component {
 
@@ -13,9 +14,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Programming anecdotes</h1>
-        <Notification />
+        {this.props.notification.text!==''&&<Notification />}
         <AnecdoteList />
-        <AnecdoteForm />
+        <AnecdoteForm/>
       </div>
     )
   }
@@ -28,8 +29,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps,
-  anecdoteReducer.mapDispatchToProps()
+  (a) => a,
+  mapDispatchToProps()
 )(App)
 
 
