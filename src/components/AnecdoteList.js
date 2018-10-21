@@ -9,7 +9,7 @@ class AnecdoteList extends React.Component {
     return (
       <div>
         <h2>Anecdotes</h2>
-        {this.props.anecdotes.sort((a, b) => b.votes - a.votes).map(anecdote =>
+        {this.props.anecdotes.filter(a=>a.content.indexOf(this.props.filter)!==-1).sort((a, b) => b.votes - a.votes).map(anecdote =>
           <div key={anecdote.id}>
             <div>
               {anecdote.content}
