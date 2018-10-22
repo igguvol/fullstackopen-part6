@@ -1,14 +1,15 @@
 import React from 'react'
-
 import {connect} from 'react-redux';  
 
 import { mapDispatchToProps } from '../store';
+import anecdoteService from '../services/anecdotes'
 
 
 class AnecdoteForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const content = e.target.anecdote.value
+    anecdoteService.create( {content:content,votes:0} );
     this.props.actions.anecdotes.createAnecdote( content );
     this.props.actions.notification.setNotification( 'Anecdote created' );
     setTimeout( () => this.props.actions.notification.removeNotification(), 5000 );

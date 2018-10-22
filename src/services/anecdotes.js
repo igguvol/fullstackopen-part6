@@ -5,4 +5,14 @@ const getAll = async () => {
   return response.data
 }
 
-export default { getAll }
+const create = async (anecdote) => {
+  const response = await axios.post('http://localhost:3001/anecdotes', anecdote)
+  return response.data
+}
+
+const update = async (id,anecdote) => {
+  const response = await axios.put('http://localhost:3001/anecdotes/${id}', anecdote)
+  return response.data
+}
+
+export default { getAll, create, update }
