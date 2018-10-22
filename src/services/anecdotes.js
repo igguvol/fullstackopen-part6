@@ -11,7 +11,7 @@ const create = async (anecdote) => {
 }
 
 const update = async (id,anecdote) => {
-  const response = await axios.put('http://localhost:3001/anecdotes/${id}', anecdote)
+  const response = await axios.put('http://localhost:3001/anecdotes/'+id, anecdote)
   return response.data
 }
 

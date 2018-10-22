@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import anecdoteReducer from '../reducers/anecdoteReducer';
 import { mapDispatchToProps } from '../store';
+import anecdoteService from '../services/anecdotes'
 
 class AnecdoteList extends React.Component {
   render() {
@@ -17,6 +17,7 @@ class AnecdoteList extends React.Component {
             <div>
               has {anecdote.votes}
               <button onClick={() => {
+                  anecdoteService.update( anecdote.id, {...anecdote,votes:anecdote.votes+1} );
                   this.props.actions.anecdotes.voteAnecdote( anecdote.id );
                   this.props.actions.notification.setNotification( 'Anecdote voted' );
                   setTimeout( () => this.props.actions.notification.removeNotification(), 5000 );
