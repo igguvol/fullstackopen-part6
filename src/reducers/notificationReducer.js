@@ -29,5 +29,18 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+export const notify = (text, seconds) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'SET_NOTIFICATION',
+      text: text
+      });
+    setTimeout( () => dispatch({
+      type: 'SET_NOTIFICATION',
+      text: ''
+    }), seconds * 1000 );
+  }
+}
+
 
 export default { reducer, mapDispatchToProps };

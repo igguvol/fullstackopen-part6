@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { mapDispatchToProps } from '../store';
 import anecdoteService from '../services/anecdotes'
+import {voteAnecdote} from '../reducers/anecdoteReducer'
+import { notify } from '../reducers/notificationReducer'
 
 class AnecdoteList extends React.Component {
   render() {
@@ -17,10 +19,9 @@ class AnecdoteList extends React.Component {
             <div>
               has {anecdote.votes}
               <button onClick={() => {
-                  anecdoteService.update( anecdote.id, {...anecdote,votes:anecdote.votes+1} );
-                  this.props.actions.anecdotes.voteAnecdote( anecdote.id );
-                  this.props.actions.notification.setNotification( 'Anecdote voted' );
-                  setTimeout( () => this.props.actions.notification.removeNotification(), 5000 );
+                console.log('vote?',this.props,anecdote)
+                  this.props.voteAnecdote( anecdote );
+                  this.props.notify( 'Anecdote voted', 5 );
                 }
               }>
                 vote
@@ -41,5 +42,5 @@ export default connect(
                             .sort((a, b) => b.votes - a.votes)
     };
   },
-  mapDispatchToProps
+  {voteAnecdote, notify} //mapDispatchToProps
 )(AnecdoteList)

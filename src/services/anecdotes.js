@@ -6,12 +6,12 @@ const getAll = async () => {
 }
 
 const create = async (anecdote) => {
-  const response = await axios.post('http://localhost:3001/anecdotes', anecdote)
+  const response = await axios.post('http://localhost:3001/anecdotes', {content:anecdote, votes:0} )
   return response.data
 }
 
-const update = async (id,anecdote) => {
-  const response = await axios.put('http://localhost:3001/anecdotes/'+id, anecdote)
+const update = async (anecdote) => {
+  const response = await axios.put('http://localhost:3001/anecdotes/'+anecdote.id, anecdote)
   return response.data
 }
 

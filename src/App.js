@@ -7,16 +7,14 @@ import Filter from './components/Filter'
 import anecdoteReducer from './reducers/anecdoteReducer';
 import store, { mapDispatchToProps } from './store';
 import anecdoteService from './services/anecdotes'
+import { initializeAnecdotes } from './reducers/anecdoteReducer'
 
 class App extends React.Component {
 
   // componentWillMount is considered legacy method by react documentation, changed to componentDidMount
   componentDidMount()
   {
-    anecdoteService.getAll()
-      .then( (a) => 
-        this.props.actions.anecdotes.setAnecdotes( a )
-      );
+    this.props.initializeAnecdotes();
     store.subscribe( (a) => {
       this.forceUpdate();
     } );
@@ -47,7 +45,7 @@ class App extends React.Component {
 
 export default connect(
   (a) => a,
-  mapDispatchToProps
+  {initializeAnecdotes} //mapDispatchToProps
 )(App)
 
 
