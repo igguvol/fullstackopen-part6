@@ -2,6 +2,5 @@
 
 
 - start frontend: "npm start"
-- start backend: "npm run-script start-backend"
+- start backend: "npm run server"
 
-  
