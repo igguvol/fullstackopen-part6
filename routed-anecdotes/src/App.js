@@ -1,11 +1,12 @@
 import React from 'react'
 import {Route, Switch, Link, BrowserRouter as Router} from 'react-router-dom'
+import Anecdote from './components/Anecdote'
 
 const Menu = () => (
   <div>    
-    <a href='/anecdotes'>anecdotes</a>&nbsp;
-    <a href='/create'>create new</a>&nbsp;
-    <a href='/about'>about</a>&nbsp;
+    <Link to='/anecdotes'>anecdotes</Link>&nbsp;
+    <Link to='/create'>create new</Link>&nbsp;
+    <Link to='/about'>about</Link>&nbsp;
   </div>
 )
 
@@ -13,7 +14,7 @@ const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
     <ul>
-      {anecdotes.map(anecdote => <li key={anecdote.id} >{anecdote.content}</li>)}
+      {anecdotes.map(anecdote => <li key={anecdote.id} ><Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link></li>)}
     </ul>  
   </div>
 )
@@ -145,6 +146,10 @@ class App extends React.Component {
               <Switch>
                 <Route exact path='/anecdotes'>
                   <AnecdoteList anecdotes={this.state.anecdotes} />
+                </Route>
+                <Route exact path='/anecdotes/:id' render={({match}) =>
+                  <Anecdote anecdote={this.anecdoteById(match.params.id)} />
+                } >
                 </Route>
                 <Route exact path='/about'>
                   <About />      
