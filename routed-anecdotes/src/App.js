@@ -4,7 +4,7 @@ import Anecdote from './components/Anecdote'
 
 const Menu = () => (
   <div>    
-    <Link to='/anecdotes'>anecdotes</Link>&nbsp;
+    <Link to='/'>anecdotes</Link>&nbsp;
     <Link to='/create'>create new</Link>&nbsp;
     <Link to='/about'>about</Link>&nbsp;
   </div>
@@ -144,7 +144,7 @@ class App extends React.Component {
             <h1>Software anecdotes</h1>
               <Menu />
               <Switch>
-                <Route exact path='/anecdotes'>
+                <Route exact path='/'>
                   <AnecdoteList anecdotes={this.state.anecdotes} />
                 </Route>
                 <Route exact path='/anecdotes/:id' render={({match}) =>
