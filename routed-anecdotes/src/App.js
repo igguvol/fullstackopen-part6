@@ -64,9 +64,11 @@ class CreateNew extends React.Component {
       info: this.state.info,
       votes: 0
     })
+    this.props.history.push('/')
   }
 
   render() {
+    console.log('history:',this.props.history);
     return(
         <div>
           <h2>create a new anecdote</h2>
@@ -154,8 +156,9 @@ class App extends React.Component {
                 <Route exact path='/about'>
                   <About />      
                 </Route>
-                <Route exact path='/create'>
-                  <CreateNew addNew={this.addNew}/>
+                <Route exact path='/create' render={({history}) => 
+                  <CreateNew addNew={this.addNew} history={history}/>
+                }>
                 </Route>
               </Switch>
             <Footer />
