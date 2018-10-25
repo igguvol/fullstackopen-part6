@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Switch, NavLink, Link, BrowserRouter as Router} from 'react-router-dom'
-import { Button, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
+import { Container,Row,Button, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import Anecdote from './components/Anecdote'
 
 const Menu = () => {
@@ -28,14 +28,14 @@ const AnecdoteList = ({ anecdotes }) => {
 }
 
 const About = () => (
-  <div class="container">
-    <div class="row">
-      <div class="col">
+  <Container>
+    <Row>
+      <Col>
         <h2>About anecdote app</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6" style={{margin:'auto'}}>
+      </Col>
+    </Row>
+    <Row>
+      <Col class="col-sm-6" style={{margin:'auto'}}>
         <p>According to Wikipedia:</p>
         
         <em>An anecdote is a brief, revealing account of an individual person or an incident. 
@@ -44,12 +44,12 @@ const About = () => (
           An anecdote is "a story with a point."</em>
 
         <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
-      </div>
-      <div class="col-sm-4" style={{margin:'auto'}}>
+      </Col>
+      <Col class="col-sm-4" style={{margin:'auto'}}>
         <img style={{maxWidth:'100%'}} src="https://i.ytimg.com/vi/jUibaPTXSHk/hqdefault.jpg" />
-      </div>
-    </div>
-  </div>
+      </Col>
+    </Row>
+  </Container>
 )
 
 const Footer = () => (
