@@ -65,6 +65,7 @@ class CreateNew extends React.Component {
       votes: 0
     })
     this.props.history.push('/')
+    this.props.setNotification( `a new anecdote ${this.state.content} created!` )
   }
 
   render() {
@@ -139,12 +140,20 @@ class App extends React.Component {
     this.setState({ anecdotes })
   }
 
+  setNotification = (notification) => {
+    this.setState( {notification:notification} );
+    setTimeout( () => this.setState( {notification:'' } ), 10000 )
+    }
+
+
+
   render() {
     return (
         <Router>
           <div>
             <h1>Software anecdotes</h1>
               <Menu />
+              {this.state.notification!==''&&(<div>{this.state.notification}</div>)}
               <Switch>
                 <Route exact path='/'>
                   <AnecdoteList anecdotes={this.state.anecdotes} />
@@ -157,7 +166,7 @@ class App extends React.Component {
                   <About />      
                 </Route>
                 <Route exact path='/create' render={({history}) => 
-                  <CreateNew addNew={this.addNew} history={history}/>
+                  <CreateNew addNew={this.addNew} history={history} setNotification={this.setNotification}/>
                 }>
                 </Route>
               </Switch>
