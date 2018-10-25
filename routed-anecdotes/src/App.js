@@ -1,15 +1,16 @@
 import React from 'react'
 import {Route, Switch, NavLink, Link, BrowserRouter as Router} from 'react-router-dom'
-import { Container,Row,Button, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
+import { Jumbotron, Container, Row, Button, Alert, Footer as footer, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import Anecdote from './components/Anecdote'
 
 const Menu = () => {
-  const activeStyle = {backgroundColor:'steelblue', border:'1px solid black', padding:'1em', color:'white', fontWeight:'bold'}
+  const activeStyle = {margin:'1em', backgroundColor:'steelblue', border:'1px solid black', padding:'1em', color:'white', fontWeight:'bold'}
+  const style= { color:'black', margin:'1em' }
   return (
     <div style={{backgroundColor:'lightblue', padding:'1em'}}>
-      <NavLink activeStyle={activeStyle} exact to='/'>anecdotes</NavLink>&nbsp;
-      <NavLink activeStyle={activeStyle} exact to='/create'>create new</NavLink>&nbsp;
-      <NavLink activeStyle={activeStyle} exact to='/about'>about</NavLink>&nbsp;
+      <NavLink activeStyle={activeStyle} style={style} exact to='/'>anecdotes</NavLink>&nbsp;
+      <NavLink activeStyle={activeStyle} style={style} exact to='/create'>create new</NavLink>&nbsp;
+      <NavLink activeStyle={activeStyle} style={style} exact to='/about'>about</NavLink>&nbsp;
     </div>
   )
 }
@@ -28,13 +29,13 @@ const AnecdoteList = ({ anecdotes }) => {
 }
 
 const About = () => (
-  <Container>
+  <Container style={{height:'100%'}}>
     <Row>
       <Col>
         <h2>About anecdote app</h2>
       </Col>
     </Row>
-    <Row>
+    <Row className='w-100'>
       <Col class="col-sm-6" style={{margin:'auto'}}>
         <p>According to Wikipedia:</p>
         
@@ -53,11 +54,11 @@ const About = () => (
 )
 
 const Footer = () => (
-  <div>
+  <footer style={{backgroundColor:'lightblue', textAlign:'center', padding:'1em', align:'bottom', position:'absolute',bottom:0,width:'100%'}} className='footer  '>
     Anecdote app for <a href='https://courses.helsinki.fi/fi/TKT21009/121540749'>Full Stack -sovelluskehitys</a>.
 
     See <a href='https://github.com/mluukkai/routed-anecdotes'>https://github.com/mluukkai/routed-anecdotes</a> for the source code. 
-  </div>
+  </footer>
 )
 
 class CreateNew extends React.Component {
@@ -172,7 +173,7 @@ class App extends React.Component {
   setNotification = (notification) => {
     this.setState( {notification:notification} );
     setTimeout( () => this.setState( {notification:'' } ), 10000 )
-    }
+  }
 
 
 
@@ -180,11 +181,11 @@ class App extends React.Component {
     //console.log('App.state ', this.state)
     const notificationStyle = { border:"1px solid green", borderRadius:"5px", padding:'1em', margin:'1em' }
     return (
-        <Router>
-          <div>
+        <Router style={{height:'100%'}} id='fkaofak'>
+          <div style={{height:'100%'}}>
             <h1>Software anecdotes</h1>
               <Menu />
-              {this.state.notification!==''&&(<div style={notificationStyle}>{this.state.notification}</div>)}
+              {this.state.notification!==''&&(<Alert color="success" style={notificationStyle}>{this.state.notification}</Alert>)}
               <Switch>
                 <Route exact path='/'>
                   <AnecdoteList anecdotes={this.state.anecdotes} />
