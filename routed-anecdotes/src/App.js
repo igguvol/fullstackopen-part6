@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Switch, NavLink, Link, BrowserRouter as Router} from 'react-router-dom'
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Button, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import Anecdote from './components/Anecdote'
 
 const Menu = () => {
@@ -35,7 +35,7 @@ const About = () => (
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-8" style={{margin:'auto'}}>
+      <div class="col-sm-6" style={{margin:'auto'}}>
         <p>According to Wikipedia:</p>
         
         <em>An anecdote is a brief, revealing account of an individual person or an incident. 
@@ -45,8 +45,8 @@ const About = () => (
 
         <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
       </div>
-      <div class="col-sm-4">
-        <img src="https://i.ytimg.com/vi/jUibaPTXSHk/hqdefault.jpg" />
+      <div class="col-sm-4" style={{margin:'auto'}}>
+        <img style={{maxWidth:'100%'}} src="https://i.ytimg.com/vi/jUibaPTXSHk/hqdefault.jpg" />
       </div>
     </div>
   </div>
@@ -92,21 +92,31 @@ class CreateNew extends React.Component {
     return(
         <div>
           <h2>create a new anecdote</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              content 
-              <input name='content' value={this.state.content} onChange={this.handleChange} />
-            </div>
-            <div>
-              author
-              <input name='author' value={this.state.author} onChange={this.handleChange} />
-            </div>
-            <div>
-              url for more info
-              <input name='info' value={this.state.info} onChange={this.handleChange} />
-            </div> 
-            <button>create</button>
-          </form>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label for='content'>
+              content
+              </Label> 
+              <Input id='content' type='textarea' style={{marginLeft:'auto'}} name='content' value={this.state.content} onChange={this.handleChange} />
+            </FormGroup>
+            <FormGroup row>
+              <Label for='author' sm={2}>
+                author
+              </Label>  
+              <Col sm={10}>
+                <Input id='author' name='author' value={this.state.author} onChange={this.handleChange} />
+              </Col>
+            </FormGroup>
+            <FormGroup row> 
+              <Label for='info' sm={2}>
+                url for more info
+              </Label> 
+              <Col sm={10}>
+                <Input id='info' name='info' value={this.state.info} onChange={this.handleChange} />
+              </Col>
+            </FormGroup> 
+            <Button>create</Button>
+          </Form  >
         </div>
     )
 
