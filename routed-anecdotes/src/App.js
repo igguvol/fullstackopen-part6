@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Switch, NavLink, Link, BrowserRouter as Router} from 'react-router-dom'
-import { Jumbotron, Container, Row, Button, Alert, Footer as footer, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
+import {Container, Row, Button, Alert, Footer as footer, Label, Input, Col, Form, FormGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import Anecdote from './components/Anecdote'
 
 const Menu = () => {
@@ -19,7 +19,7 @@ const AnecdoteList = ({ anecdotes }) => {
   
   const className="list-group-item";
   return (
-    <div>
+    <div style={{margin:'1em'}}>
       <h2>Anecdotes</h2>
       <ListGroup>
         {anecdotes.map(anecdote => <ListGroupItem className={className} key={anecdote.id} ><Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link></ListGroupItem>)}
@@ -29,7 +29,7 @@ const AnecdoteList = ({ anecdotes }) => {
 }
 
 const About = () => (
-  <Container style={{height:'100%'}}>
+  <Container>
     <Row>
       <Col>
         <h2>About anecdote app</h2>
@@ -54,9 +54,8 @@ const About = () => (
 )
 
 const Footer = () => (
-  <footer style={{backgroundColor:'lightblue', textAlign:'center', padding:'1em', align:'bottom', position:'absolute',bottom:0,width:'100%'}} className='footer  '>
+  <footer style={{backgroundColor:'lightblue', textAlign:'center', padding:'1em', align:'bottom', position:'fixed',bottom:0,width:'100%'}} className='footer  '>
     Anecdote app for <a href='https://courses.helsinki.fi/fi/TKT21009/121540749'>Full Stack -sovelluskehitys</a>.
-
     See <a href='https://github.com/mluukkai/routed-anecdotes'>https://github.com/mluukkai/routed-anecdotes</a> for the source code. 
   </footer>
 )
@@ -72,7 +71,6 @@ class CreateNew extends React.Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.name, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
 
@@ -89,11 +87,10 @@ class CreateNew extends React.Component {
   }
 
   render() {
-    console.log('history:',this.props.history);
     return(
-        <div>
+        <div className='shadow' style={{margin:'1em',padding:'1em'}}>
           <h2>create a new anecdote</h2>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="box-shadow">
             <FormGroup>
               <Label for='content'>
               content
@@ -178,10 +175,9 @@ class App extends React.Component {
 
 
   render() {
-    //console.log('App.state ', this.state)
     const notificationStyle = { border:"1px solid green", borderRadius:"5px", padding:'1em', margin:'1em' }
     return (
-        <Router style={{height:'100%'}} id='fkaofak'>
+        <Router style={{height:'100%'}}>
           <div style={{height:'100%'}}>
             <h1>Software anecdotes</h1>
               <Menu />
