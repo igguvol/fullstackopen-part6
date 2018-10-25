@@ -1,14 +1,17 @@
 import React from 'react'
-import {Route, Switch, Link, BrowserRouter as Router} from 'react-router-dom'
+import {Route, Switch, NavLink, Link, BrowserRouter as Router} from 'react-router-dom'
 import Anecdote from './components/Anecdote'
 
-const Menu = () => (
-  <div>    
-    <Link to='/'>anecdotes</Link>&nbsp;
-    <Link to='/create'>create new</Link>&nbsp;
-    <Link to='/about'>about</Link>&nbsp;
-  </div>
-)
+const Menu = () => {
+  const activeStyle = {backgroundColor:'steelblue', border:'1px solid black', padding:'1em', color:'white', fontWeight:'bold'}
+  return (
+    <div style={{backgroundColor:'lightblue', padding:'1em'}}>
+      <NavLink activeStyle={activeStyle} exact to='/'>anecdotes</NavLink>&nbsp;
+      <NavLink activeStyle={activeStyle} exact to='/create'>create new</NavLink>&nbsp;
+      <NavLink activeStyle={activeStyle} exact to='/about'>about</NavLink>&nbsp;
+    </div>
+  )
+}
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
