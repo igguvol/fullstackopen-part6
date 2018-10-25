@@ -148,12 +148,14 @@ class App extends React.Component {
 
 
   render() {
+    //console.log('App.state ', this.state)
+    const notificationStyle = { border:"1px solid green", borderRadius:"5px", padding:'1em', margin:'1em' }
     return (
         <Router>
           <div>
             <h1>Software anecdotes</h1>
               <Menu />
-              {this.state.notification!==''&&(<div>{this.state.notification}</div>)}
+              {this.state.notification!==''&&(<div style={notificationStyle}>{this.state.notification}</div>)}
               <Switch>
                 <Route exact path='/'>
                   <AnecdoteList anecdotes={this.state.anecdotes} />
